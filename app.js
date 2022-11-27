@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // connect to mongodb atlas database
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true})
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true, useUnifiedTopology: true})
 .then(() => {
     console.log("connect to mongodb atlas");
 }).catch(error => {
