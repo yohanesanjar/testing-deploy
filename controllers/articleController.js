@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
  
 module.exports.article_get = asyncHandler(async (req, res) => {
   const article = await Article.find();
-  res.status(200).json({article:article});
+  res.status(200).json({article});
 });
 
 

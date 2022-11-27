@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
  
 module.exports.vidio_get = asyncHandler(async (req, res) => {
   const vidio = await Vidio.find();
-  res.status(200).json({vidio:vidio});
+  res.status(200).json({vidio});
 });
 
 
