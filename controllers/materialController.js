@@ -1,4 +1,4 @@
-const Material = require('../models/Material');
+const Material = require('../models/material');
 const asyncHandler = require('express-async-handler');
 
  
