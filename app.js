@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // connect to mongodb atlas database
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true})
+mongoose.connect('mongodb://yohanes:yohanes@ac-fbd7i5y-shard-00-00.nugsfru.mongodb.net:27017,ac-fbd7i5y-shard-00-01.nugsfru.mongodb.net:27017,ac-fbd7i5y-shard-00-02.nugsfru.mongodb.net:27017/iconart?ssl=true&replicaSet=atlas-14ixbs-shard-0&authSource=admin&retryWrites=true&w=majority', {useNewUrlParser:true})
 .then(() => {
     console.log("connect to mongodb atlas");
 }).catch(error => {
