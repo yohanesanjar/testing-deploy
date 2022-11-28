@@ -20,13 +20,12 @@ module.exports.article_get_id = asyncHandler(async (req, res) => {
     
   });
 
-
 module.exports.article_post = asyncHandler(async (req, res) => {
     const { title, description, pic } = req.body;
 
   if (!title || !description || !pic) {
     res.status(400);
-    throw new Error("Please Fill all the feilds");
+    throw new Error("Please Fill all the fields");
     return;
   } else {
     const article = new Article({ title, description, pic });

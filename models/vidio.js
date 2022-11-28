@@ -20,6 +20,6 @@ const vidioSchema = new mongoose.Schema({
     }
 });
 
-const vidio = mongoose.model('vidio', vidioSchema);
+const Vidio = mongoose.model('vidio', vidioSchema);
 
-module.exports = vidio;
+module.exports = Vidio;

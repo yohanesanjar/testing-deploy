@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes')
 const articleRoutes = require('./routes/articleRoutes')
 const vidioRoutes = require('./routes/vidioRoutes')
+const materialRoutes = require('./routes/materialRoutes')
 const { errorHandler } = require('./middlewares/errorMiddleware')
 const app = express();
 require('dotenv').config();
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // connect to mongodb atlas database
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true})
 .then(() => {
     console.log("connect to mongodb atlas");
 }).catch(error => {
@@ -24,6 +25,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true, useUnifiedTopolog
 app.use(userRoutes);
 app.use(articleRoutes);
 app.use(vidioRoutes);
+app.use(materialRoutes);
 app.use(errorHandler);
 
 // start server

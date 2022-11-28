@@ -1,4 +1,4 @@
-const Vidio = require('../models/vidio');
+const Vidio = require('../models/Vidio');
 const asyncHandler = require('express-async-handler');
 
  

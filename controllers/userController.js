@@ -2,28 +2,25 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 
-// const handleErrors = (err) => {
-//   let errors = { email: '' };
-
-//     if(err.message.includes('user validation failed')) {
-//       Object.values(err.errors).forEach(({ properties }) => {
-//         errors[properties.path] = properties.message
-//       })
-//     }
-//     return errors;
-// }
-
 module.exports.signup = asyncHandler(async (req, res) => {
     const { full_name, email, username, password, role, pic } = req.body;
 
     const emailExists = await User.findOne({ email });
     const usernameExists = await User.findOne({ username });
-    
-    // //email @ validator
-    // if(handleErrors){
-    //   res.status(400);
-    //   throw new Error('')
-    // }
+
+    if(!email.match('@')){
+      res.status(400);
+      throw new Error("Please enter a valid email");
+    }
+    if( password.length < 6){
+      res.status(400);
+      throw new Error("Minimum password is 6");
+    }
+    //no fields
+    if (!full_name || !email || !username || !password) {
+      res.status(400);
+      throw new Error("Please Fill all the fields");
+    }
     //email exist
     if(emailExists){
       res.status(400);
@@ -57,11 +54,6 @@ module.exports.signup = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('User Not Found')
     }
-
-    res.json({
-        full_name,
-        email
-    })
 });
 
 module.exports.signin = asyncHandler(async (req, res) => {
@@ -136,7 +128,7 @@ module.exports.user_delete = asyncHandler(async (req, res) => {
 
 module.exports.user_get = asyncHandler(async (req, res) => {
     const user = await User.find();
-  res.status(200).json({user:user});
+  res.status(200).json({user});
 })
 
 module.exports.user_get_id = asyncHandler(async (req, res) => {
