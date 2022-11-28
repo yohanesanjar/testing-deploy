@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
  
 module.exports.material_get = asyncHandler(async (req, res) => {
   const material = await Material.find();
-  res.status(200).json({material:material});
+  res.status(200).json({material});
 });
 
 
@@ -20,14 +20,12 @@ module.exports.material_get_id = asyncHandler(async (req, res) => {
     
   });
 
-
 module.exports.material_post = asyncHandler(async (req, res) => {
-    const { title, description, link , pic } = req.body;
+    const { title, description, pic } = req.body;
 
   if (!title || !description || !pic) {
     res.status(400);
     throw new Error("Please Fill all the feilds");
-    return;
   } else {
     const material = new Material({ title, description, pic });
 
@@ -59,7 +57,7 @@ module.exports.material_delete = asyncHandler(async (req, res) => {
     const material = await Material.findById(req.params.id);
   
     if (material) {
-      await Material.remove();
+      await material.remove();
       res.status(200).json({ message: "Material Removed" });
     } else {
       res.status(404);
