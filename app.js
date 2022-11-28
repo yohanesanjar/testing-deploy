@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes')
 const articleRoutes = require('./routes/articleRoutes')
-const vidioRoutes = require('./routes/vidioRoutes')
+const videoRoutes = require('./routes/videoRoutes')
 const materialRoutes = require('./routes/materialRoutes')
 const { errorHandler } = require('./middlewares/errorMiddleware')
 const app = express();
@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser:true})
 //routes
 app.use(userRoutes);
 app.use(articleRoutes);
-app.use(vidioRoutes);
+app.use(videoRoutes);
 app.use(materialRoutes);
 app.use(errorHandler);
 
